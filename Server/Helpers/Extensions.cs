@@ -1,7 +1,10 @@
 using System;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Server.Helper;
 
-namespace newProj.API.Helpers
+namespace Server.Helpers
 {
     public static class Extensions
     {
@@ -12,6 +15,15 @@ namespace newProj.API.Helpers
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
 
+        public static void Addpagination(this HttpResponse response, int currentPage, int itemsPerPage, int totalItems, int totalPages)
+        {
+            var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
+            var camelCaseFormatter = new JsonSerializerSettings();
+            camelCaseFormatter.ContractResolver =new CamelCasePropertyNamesContractResolver();
+
+            response.Headers.Add("Pagination",JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
+            response.Headers.Add("Access-Control-Expose-Headers","Pagination");
+        }
         public static int FindAge(this DateTime birthDate)
         {
             var today = DateTime.Today;

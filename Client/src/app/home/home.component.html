@@ -1,6 +1,44 @@
-<div>
-  <app-new></app-new>
-</div>
-<div>
-  <app-old></app-old>
-</div>
+<h1 style="text-align: center">
+  Do it Fast
+</h1>
+<div class="container">
+
+  <div>
+    <div>
+      <button type="button" class="btn btn-success" (click)="onAddRow()">
+        <i class="fa fa-plus"></i> Add New Row
+      </button>
+      <button type="button" class="btn btn-info" (click)="updateItems()">
+        <i class="fa fa-edit"></i> Update Data
+      </button>
+      <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
+        <i class="fa fa-trash"></i> Delete Selected
+      </button>
+    </div>
+    <div>
+      <ag-grid-angular class="ag-theme-balham grid-size" [rowData]="rowData" [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions" [rowSelection]="rowSelection" (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+    <div class="d-flex justify-content-center space-top">
+      <pagination [boundaryLinks]="true"
+                  [totalItems]="model.pagination.totalItems"
+                  [itemsPerPage]="model.pagination.itemsPerPage"
+                  [(ngModel)]="model.pagination.currentPage" 
+                  (pageChanged)="pageChanged($event)"
+                  previousText="Previous"
+                  nextText="Next"
+                  firstText="First"
+                  lastText="Last">
+      </pagination>
+    </div>
+    <div>
+      <!-- <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+        <input class="form-control mr-sm-2" type="text" name="FirstName" required placeholder="First Name">
+        <input class="form-control mr-sm-2" type="text" name="LastName" required placeholder="Last Name">
+        <input class="form-control mr-sm-1" type="text" name="Age" required placeholder="Age">
+        <input class="form-control mr-sm-1" type="text" name="Gender" required placeholder="Gender">
+        <button [disabled] class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+      </form> -->
+    </div>
+  </div>

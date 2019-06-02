@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using newProj.API.Models;
+using Server.Models;
 
-namespace newProj.API.Data
+namespace Server.Data
 {
     public class DataContext : DbContext
     {
@@ -12,5 +12,6 @@ Database.EnsureCreated();
         public DbSet<Value> Values{get;set;}
         public DbSet<User> Users { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Employee> Employees{get;set;}
     }
 }

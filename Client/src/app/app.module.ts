@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -30,6 +30,9 @@ import { CountDownnComponent } from './countDownn/countDownn.component';
 import { TestComponent } from './Test/Test.component';
 import { NewComponent } from './new/new.component';
 import { OldComponent } from './old/old.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { EmployeeService } from './_services/employee.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter(){
     return localStorage.getItem('token');
@@ -56,9 +59,12 @@ export function tokenGetter(){
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
+      PaginationModule.forRoot(),
+      AgGridModule.withComponents([]),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
+      NgbModule.forRoot(),
       JwtModule.forRoot({
         config:{
             tokenGetter:tokenGetter,
@@ -76,7 +82,8 @@ export function tokenGetter(){
       MemberDetailResolver,
       MemberListResolver,
       EditProfileResolver,
-      UnSavedGuard
+      UnSavedGuard,
+      EmployeeService
    ],
    bootstrap: [
       AppComponent

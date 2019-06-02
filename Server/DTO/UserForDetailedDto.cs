@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using newProj.API.Models;
+using Server.Models;
 
-namespace newProj.API.DTO
+namespace Server.DTO
 {
     public class UserForDetailedDto
     {

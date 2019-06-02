@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using newProj.API.Data;
-using newProj.API.DTO;
-using newProj.API.Models;
+using Server.Data;
+using Server.DTO;
+using Server.Models;
 
-namespace newProj.API.Controllers
+namespace Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

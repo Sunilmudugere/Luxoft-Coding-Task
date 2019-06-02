@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.0.3",
+    "@angular/animations": "^7.2.9",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
     "@angular/core": "^6.0.3",
@@ -21,6 +21,9 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@auth0/angular-jwt": "^2.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.2.0",
+    "ag-grid-angular": "^20.2.0",
+    "ag-grid-community": "^20.2.0",
     "alertifyjs": "^1.11.2",
     "bootstrap": "^4.2.1",
     "bootswatch": "^4.3.1",

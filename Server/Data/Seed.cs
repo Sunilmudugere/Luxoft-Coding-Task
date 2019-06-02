@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using newProj.API.Models;
+using Server.Models;
 using Newtonsoft.Json;
 
-namespace newProj.API.Data
+namespace Server.Data
 {
     public class Seed
     {
@@ -15,7 +16,22 @@ namespace newProj.API.Data
 
         public void SeedUsers()
         {
-            if(_context.Users.Any()){
+            if(!_context.Employees.Any()){
+                Employee emp = new Employee();
+                emp.FirstName = "Sunil";   
+                emp.LastName = "MP";
+                emp.Email = "sunilmudugere@gmail.com";
+                emp.PhoneNumber = "+91 9739634660";  
+                emp.DateOfBirth = new DateTime(1989,3,5);  
+                emp.Age = 30;
+                emp.Gender = "Male";
+                emp.City = "Mysore";
+                emp.Country = "India";
+                _context.Employees.Add(emp);
+                _context.SaveChanges();
+            }
+        
+            if(!_context.Users.Any()){
             var UserJsonData = System.IO.File.ReadAllText("Data/UserSeedData.json");
             var UserData = JsonConvert.DeserializeObject<List<User>>(UserJsonData);
 

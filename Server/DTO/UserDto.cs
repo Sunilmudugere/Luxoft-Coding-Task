@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace newProj.API.DTO
+namespace Server.DTO
 {
     public class UserDto
     {

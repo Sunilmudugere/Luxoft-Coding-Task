@@ -1,6 +1,6 @@
 using System;
 
-namespace newProj.API.Models
+namespace Server.Models
 {
     public class Photo
     {

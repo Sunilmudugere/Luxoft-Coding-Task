@@ -1,9 +1,9 @@
 using System.Linq;
 using AutoMapper;
-using newProj.API.DTO;
-using newProj.API.Models;
+using Server.DTO;
+using Server.Models;
 
-namespace newProj.API.Helpers
+namespace Server.Helpers
 {
     public class AutomapperProfiles : Profile
     {

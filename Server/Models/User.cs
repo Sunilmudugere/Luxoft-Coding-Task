@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace newProj.API.Models
+namespace Server.Models
 {
     public class User
     {

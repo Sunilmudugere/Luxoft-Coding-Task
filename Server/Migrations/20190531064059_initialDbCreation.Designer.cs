@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using newProj.API.Data;
+using Server.Data;
 
-namespace newproj.API.Migrations
+namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190220041435_ExtendedUserModel")]
-    partial class ExtendedUserModel
+    [Migration("20190531064059_initialDbCreation")]
+    partial class initialDbCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,37 @@ namespace newproj.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("newProj.API.Models.Photo", b =>
+            modelBuilder.Entity("Server.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("Gender");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Server.Models.Photo", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -40,7 +70,7 @@ namespace newproj.API.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("newProj.API.Models.User", b =>
+            modelBuilder.Entity("Server.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -76,7 +106,7 @@ namespace newproj.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("newProj.API.Models.Value", b =>
+            modelBuilder.Entity("Server.Models.Value", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -88,9 +118,9 @@ namespace newproj.API.Migrations
                     b.ToTable("Values");
                 });
 
-            modelBuilder.Entity("newProj.API.Models.Photo", b =>
+            modelBuilder.Entity("Server.Models.Photo", b =>
                 {
-                    b.HasOne("newProj.API.Models.User", "User")
+                    b.HasOne("Server.Models.User", "User")
                         .WithMany("Photos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

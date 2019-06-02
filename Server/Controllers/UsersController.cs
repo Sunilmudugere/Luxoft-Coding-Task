@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using newProj.API.Data;
-using newProj.API.DTO;
+using Server.Data;
+using Server.DTO;
 
-namespace newProj.API.Controllers
+namespace Server.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

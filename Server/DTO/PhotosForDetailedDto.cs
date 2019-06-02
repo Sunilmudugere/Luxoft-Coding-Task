@@ -1,6 +1,6 @@
 using System;
 
-namespace newProj.API.DTO
+namespace Server.DTO
 {
     public class PhotosForDetailedDto
     {
