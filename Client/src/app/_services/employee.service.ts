@@ -38,6 +38,7 @@ export class EmployeeService {
   };
 
   deleteAllEmployees(model: any):Observable<EmployeeViewModel> {
+    console.log("Testing model: "+JSON.stringify(model));
     return this.http.post(this.baseUrl + '/DeleteEmployees', model).pipe(
       map((response: any) => {
         if (response) {

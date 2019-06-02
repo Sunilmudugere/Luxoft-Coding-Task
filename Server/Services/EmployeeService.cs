@@ -20,7 +20,7 @@ namespace Server.Services
         public Task<EmployeeViewModel> GetEmployees(EmployeeDto emp)
         {
             var employeeInfo = _empRepository.GetEmployees(emp.Pagination.ItemsPerPage, emp.Pagination.CurrentPage).Result;
-            var empModel = new EmployeeViewModel(employeeInfo.dataList,employeeInfo.CurrentPage,employeeInfo.PageSize,employeeInfo.TotalCount,employeeInfo.TotalPages);
+            var empModel = new EmployeeViewModel(employeeInfo.dataList, employeeInfo.CurrentPage, employeeInfo.PageSize, employeeInfo.TotalCount, employeeInfo.TotalPages);
             return Task.FromResult<EmployeeViewModel>(empModel);
         }
         public Task<EmployeeViewModel> SaveEmployee(EmployeeDto Emp)
@@ -43,7 +43,7 @@ namespace Server.Services
 
         public Task<EmployeeViewModel> DeleteEmployee(EmployeeDto Emp)
         {
-            foreach (var employee in Emp.Employees)
+            foreach (var employee in Emp.Employees.Where(x => x.Id != 0))
             {
                 _empRepository.DeleteEmployee(employee);
             }

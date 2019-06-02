@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
-export interface Employee {
+export class Employee {
+  constructor(){
+    this.dateOfBirth = new Date(1985,6,6);
+  }
   id: number;
   firstName: string;
   lastName: string;

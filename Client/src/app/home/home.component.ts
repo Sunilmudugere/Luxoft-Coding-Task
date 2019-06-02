@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   gridOptions: GridOptions
   rowData: Employee[];
   @ViewChild('addForm') addForm : NgForm;
-  newEmployee:{};
+  newEmployee:Employee= new Employee();
 
   constructor(private http: HttpClient,
     private empService: EmployeeService,
@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit {
 
   onRemoveSelected() {
     var selectedData = this.gridApi.getSelectedRows();
+    
     if (selectedData.length < 1) {
       this.alertify.error("Please select the records to be deleted.")
       return;
@@ -82,17 +83,25 @@ export class HomeComponent implements OnInit {
     );
   }
   onAddRow() {
-    console.log("form data: "+this.addForm.value);
+    this.newEmployee.id = 0;
+    this.model.employees = new Array<Employee>();
+    this.model.employees.push(this.newEmployee);
+    this.empService.saveAllEmployees(this.model).subscribe(
+      res => { this.rowData = res.employees; this.model.pagination = res.pagination;
+      this.alertify.success("Employee Added successfully") },
+      error => { this.alertify.error(error); },
+    );
     this.addForm.resetForm();
   }
 
-  createNewRowData() {
-    var newData = {
-      make: "Hyundai",
-      model: 2017,
-      price: 3500000
-    };
-    return newData;
+  onUpdate(){
+    this.model.employees = new Array<Employee>();
+    this.model.employees = this.rowData;
+    this.empService.saveAllEmployees(this.model).subscribe(
+      res => { this.rowData = res.employees; this.model.pagination = res.pagination;
+      this.alertify.success("Employee Saved successfully") },
+      error => { this.alertify.error(error); },
+    );
   }
 }
 
