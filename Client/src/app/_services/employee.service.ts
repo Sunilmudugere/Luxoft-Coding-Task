@@ -24,5 +24,27 @@ export class EmployeeService {
         }
       })
     )
-  }
+  };
+
+  saveAllEmployees(model: any):Observable<EmployeeViewModel> {
+    return this.http.post(this.baseUrl + '/SaveEmployees', model).pipe(
+      map((response: any) => {
+        if (response) {
+          console.log(response);
+          return response;
+        }
+      })
+    )
+  };
+
+  deleteAllEmployees(model: any):Observable<EmployeeViewModel> {
+    return this.http.post(this.baseUrl + '/DeleteEmployees', model).pipe(
+      map((response: any) => {
+        if (response) {
+          console.log(response);
+          return response;
+        }
+      })
+    )
+  };
 }

@@ -33,7 +33,7 @@
       <form #loginForm="ngForm" *ngIf="!loggedIn()" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
         <input class="form-control mr-sm-2" type="text" [(ngModel)]="model.username" name="UserName" required placeholder="UserName">
         <input class="form-control mr-sm-2" type="password" [(ngModel)]="model.password" name="Password" required placeholder="Password">
-        <button [disabled] class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
       </form>
     </div>
   </div>

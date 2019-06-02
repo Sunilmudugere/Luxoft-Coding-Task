@@ -16,36 +16,32 @@ namespace Server.Data
 
         public void SeedUsers()
         {
-            if(!_context.Employees.Any()){
-                Employee emp = new Employee();
-                emp.FirstName = "Sunil";   
-                emp.LastName = "MP";
-                emp.Email = "sunilmudugere@gmail.com";
-                emp.PhoneNumber = "+91 9739634660";  
-                emp.DateOfBirth = new DateTime(1989,3,5);  
-                emp.Age = 30;
-                emp.Gender = "Male";
-                emp.City = "Mysore";
-                emp.Country = "India";
-                _context.Employees.Add(emp);
-                _context.SaveChanges();
-            }
-        
-            if(!_context.Users.Any()){
-            var UserJsonData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-            var UserData = JsonConvert.DeserializeObject<List<User>>(UserJsonData);
-
-            foreach (var userInfo in UserData)
+            if (!_context.Employees.Any())
             {
-                byte[] passwordHash;
-                byte[] passwordSalt;
-                CreateHashPassword("Apples", out passwordHash, out passwordSalt);
-                userInfo.PasswordHash = passwordHash;
-                userInfo.PasswordSalt = passwordSalt;
-                userInfo.UserName = userInfo.UserName.ToLower();
-                _context.Users.Add(userInfo);
-                _context.SaveChanges();
+                var employeeJsonData = System.IO.File.ReadAllText("Data/employeeSeedData.json");
+                var empData = JsonConvert.DeserializeObject<List<Employee>>(employeeJsonData);
+                foreach (var employeInfo in empData)
+                {
+                    _context.Employees.Add(employeInfo);
+                    _context.SaveChanges();
+                }
             }
+            if (!_context.Users.Any())
+            {
+                var UserJsonData = System.IO.File.ReadAllText("Data/UserSeedData.json");
+                var UserData = JsonConvert.DeserializeObject<List<User>>(UserJsonData);
+
+                foreach (var userInfo in UserData)
+                {
+                    byte[] passwordHash;
+                    byte[] passwordSalt;
+                    CreateHashPassword("Apples", out passwordHash, out passwordSalt);
+                    userInfo.PasswordHash = passwordHash;
+                    userInfo.PasswordSalt = passwordSalt;
+                    userInfo.UserName = userInfo.UserName.ToLower();
+                    _context.Users.Add(userInfo);
+                    _context.SaveChanges();
+                }
             }
         }
 

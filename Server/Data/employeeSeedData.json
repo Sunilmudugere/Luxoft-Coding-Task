@@ -1,0 +1,36 @@
+[{
+  "firstName": "Sunil",
+  "lastName": "Puttaswamy",
+  "dateOfBirth": "1989-05-03",
+  "phoneNumber": "+91 9739634660",
+  "email": "sunilmudugere@gmail.com",
+  "age": 30,
+  "gender": "male",
+  "city": "Channapatna",
+  "country": "India",
+  "isDeleted": false
+},
+{
+  "firstName": "Renju",
+  "lastName": "Jacob",
+  "dateOfBirth": "1969-05-03",
+  "phoneNumber": "+91 97396367660",
+  "email": "renjujacob@gmail.com",
+  "age": 50,
+  "gender": "male",
+  "city": "Vayanad",
+  "country": "India",
+  "isDeleted": false
+},
+{
+"firstName": "Narendra",
+  "lastName": "Modi",
+  "dateOfBirth": "1959-05-03",
+  "phoneNumber": "+91 97396367660",
+  "email": "modi@gmail.com",
+  "age": 50,
+  "gender": "male",
+  "city": "Varanasi",
+  "country": "India",
+  "isDeleted": false
+}]

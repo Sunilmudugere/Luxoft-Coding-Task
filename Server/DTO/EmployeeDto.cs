@@ -10,6 +10,6 @@ namespace Server.DTO
         public bool IsSortRequired { get; set; }
         public string SortByProperty { get; set; }
         public bool IsAscending { get; set; }
-        public List<Employee> EmployeeList { get; set; }
+        public List<Employee> Employees { get; set; } 
     }
 }

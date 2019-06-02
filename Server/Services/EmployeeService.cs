@@ -25,7 +25,7 @@ namespace Server.Services
         }
         public Task<EmployeeViewModel> SaveEmployee(EmployeeDto Emp)
         {
-            foreach (var employee in Emp.EmployeeList)
+            foreach (var employee in Emp.Employees)
             {
                 if (employee.Id == 0)
                 {
@@ -43,7 +43,7 @@ namespace Server.Services
 
         public Task<EmployeeViewModel> DeleteEmployee(EmployeeDto Emp)
         {
-            foreach (var employee in Emp.EmployeeList)
+            foreach (var employee in Emp.Employees)
             {
                 _empRepository.DeleteEmployee(employee);
             }

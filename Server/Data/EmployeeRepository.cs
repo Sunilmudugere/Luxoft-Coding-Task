@@ -28,7 +28,8 @@ namespace Server.Data
 
         public void DeleteEmployee(Employee Emp)
         {
-            _context.Remove(Emp);
+            Emp.IsDeleted = true;
+            UpdateEmployee(Emp);
         }
 
         public int GetEmployeeCount()

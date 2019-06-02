@@ -4,8 +4,11 @@
 .space-top{
     margin-top: 10px
 }
-.grid-size{
-    height: 250px; 
-    width:100%;
-    margin: 5px
+.form-control{
+    width:100px !important;
+    margin-left: 5px;
+}
+.header{
+    text-align: center;
+    margin: 10px;
 }
