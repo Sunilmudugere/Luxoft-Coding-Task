@@ -4,6 +4,7 @@ export class EmployeeStatistics {
     deletedEmployeeCount: number;
     modifiedEmployeeCount: number;
     yearList: number[];
+    yearArray:string[];
     employeeAdded: number[];
     employeeDeleted:number[];
 }

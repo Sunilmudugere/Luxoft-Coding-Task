@@ -59,14 +59,23 @@ namespace Server.Services
             stats.DeletedEmployeeCount = employees.Where(x => x.IsDeleted == true).Count();
             stats.ModifiedEmployeeCount = employees.Where(x => x.IsDeleted != true && x.ModifiedDate != null).Count();
             stats.TotalEmployeeCount = employees.Count();
-            
-            var groupedResult = employees.GroupBy(x => x.YearOfJoining);
-            foreach (var group in groupedResult)
+
+            var AddedGroup = employees.GroupBy(x => x.YearOfJoining);
+            foreach (var group in AddedGroup)
             {
-                
                 stats.YearList.Add(group.Key);
                 stats.EmployeeAdded.Add(group.Count());
                 stats.EmployeeDeleted.Add(group.Where(x => x.IsDeleted == true && x.ModifiedDate.Year == group.Key).Count());
+            }
+
+            var deletedGroup = employees.Where(x => x.IsDeleted == true).GroupBy(x => x.ModifiedDate.Year);
+            foreach (var group in deletedGroup)
+            {
+                if (!stats.YearList.Any(x => x == group.Key))
+                {
+                    stats.YearList.Add(group.Key);
+                    stats.EmployeeDeleted.Add(group.Where(x => x.IsDeleted == true && x.ModifiedDate.Year == group.Key).Count());
+                }
             }
             return Task.FromResult<EmployeeStatistics>(stats);
         }

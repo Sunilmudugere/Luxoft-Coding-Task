@@ -47,6 +47,11 @@ export class EmployeeService {
   };
 
   getEmployeeStatisics():Observable<EmployeeStatistics> {
-    return this.http.get<EmployeeStatistics>(this.baseUrl + '/EmployeeStatistics');
+    return this.http.get<EmployeeStatistics>(this.baseUrl + '/EmployeeStatistics').pipe(
+      map(res => {
+        res.yearList.toString()
+        return res;
+      })
+    );
   };
 }

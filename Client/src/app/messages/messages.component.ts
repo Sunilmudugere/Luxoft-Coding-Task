@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../_services/employee.service';
+import { BarChartData } from '../_models/barChartData';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-messages',
@@ -10,11 +12,15 @@ export class MessagesComponent implements OnInit {
 
   constructor(private empService: EmployeeService) { }
 
-
+  existingEmployee: number = 0;
+  quitEmployee: number = 0;
   ngOnInit() {
     this.empService.getEmployeeStatisics().subscribe(
       res => {
         this.ChartData = [res.deletedEmployeeCount, res.currentEmployeeCount];
+        this.barChartLabels = res.yearList.map(String);
+        this.barChartData[0].data = res.employeeAdded;
+        this.barChartData[1].data = res.employeeDeleted;
       },
 
       error => { console.log(error); },
@@ -23,10 +29,9 @@ export class MessagesComponent implements OnInit {
   }
 
   ChartLabels = ['Deleted Employess', 'Current Employees'];
-  ChartData: number[];
+  ChartData = [0, 0];
   pie = 'pie';
   doughnut = 'doughnut';
-  public barChartType = 'bar';
 
   // event on pie chart slice hover
   public chartHovered(e: any): void {
@@ -38,12 +43,12 @@ export class MessagesComponent implements OnInit {
     responsive: true
   };
 
-  public barChartLabels:number[];
-  
+  public barChartLabels : string[];
+  public barChartType = 'bar';
   public barChartLegend = true;
 
   public barChartData = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    {data: [], label: 'Employees Added'},
+    {data: [], label: 'Employees Deleted'}
   ];
 }
