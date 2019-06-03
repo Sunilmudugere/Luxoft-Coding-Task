@@ -26,32 +26,7 @@ namespace Server.Data
                     _context.SaveChanges();
                 }
             }
-            if (!_context.Users.Any())
-            {
-                var UserJsonData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-                var UserData = JsonConvert.DeserializeObject<List<User>>(UserJsonData);
-
-                foreach (var userInfo in UserData)
-                {
-                    byte[] passwordHash;
-                    byte[] passwordSalt;
-                    CreateHashPassword("Apples", out passwordHash, out passwordSalt);
-                    userInfo.PasswordHash = passwordHash;
-                    userInfo.PasswordSalt = passwordSalt;
-                    userInfo.UserName = userInfo.UserName.ToLower();
-                    _context.Users.Add(userInfo);
-                    _context.SaveChanges();
-                }
-            }
         }
 
-        private void CreateHashPassword(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF32.GetBytes(password));
-            }
-        }
     }
 }

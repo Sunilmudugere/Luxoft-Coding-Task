@@ -40,8 +40,6 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<Seed>();
-            services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
 
@@ -54,18 +52,6 @@ namespace Server
             services.AddCors();
             services.AddAutoMapper();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
-            AddJwtBearer(Options =>
-            {
-                Options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-
-            });
 
             services.AddSwaggerGen(c =>
             {
@@ -105,14 +91,7 @@ namespace Server
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapSpaFallbackRoute(
-name: "Spa-FallBack",
-defaults: new { Controller = "FallBack", Action = "Index" }
-);
-
-            });
+            app.UseMvc();
         }
     }
 }
