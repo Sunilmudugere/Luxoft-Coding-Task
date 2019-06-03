@@ -23,6 +23,7 @@ namespace Server.Data
         }
         public void AddEmployee(Employee Emp)
         {
+            Emp.YearOfJoining = DateTime.Now.Year;
             Emp.CreatedDate = DateTime.Now;
             _context.Add(Emp);
         }

@@ -4,11 +4,11 @@ import { BarChartData } from '../_models/barChartData';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  selector: 'app-employeechart',
+  templateUrl: './employeechart.component.html',
+  styleUrls: ['./employeechart.component.css']
 })
-export class MessagesComponent implements OnInit {
+export class EmployeeChartComponent implements OnInit {
 
   constructor(private empService: EmployeeService) { }
 

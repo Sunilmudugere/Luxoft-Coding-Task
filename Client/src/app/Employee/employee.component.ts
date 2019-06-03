@@ -9,12 +9,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class EmployeeComponent implements OnInit {
   private rowSelection;
   private gridApi;
   private gridColumnApi;
