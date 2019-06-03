@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,10 +20,10 @@ namespace Server.Data
         {
             var employees = _context.Employees.Where(x => !x.IsDeleted);
             return await PagedList<Employee>.CreateAsync(employees,pageNumber,recordsPerPage);
-
         }
         public void AddEmployee(Employee Emp)
         {
+            Emp.CreatedDate = DateTime.Now;
             _context.Add(Emp);
         }
 
@@ -32,19 +33,20 @@ namespace Server.Data
             UpdateEmployee(Emp);
         }
 
-        public int GetEmployeeCount()
-        {
-            return _context.Employees.Where(x => !x.IsDeleted).Count();
-        }
-
         public void UpdateEmployee(Employee Emp)
         {
+            Emp.ModifiedDate = DateTime.Now;
             _context.Update(Emp);
         }
 
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public IQueryable<Employee> GetEmployeesForStats()
+        {
+            return _context.Employees;
         }
     }
 }

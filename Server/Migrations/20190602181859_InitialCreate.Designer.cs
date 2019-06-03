@@ -9,8 +9,8 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190531064059_initialDbCreation")]
-    partial class initialDbCreation
+    [Migration("20190602181859_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Server.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Email");
 
@@ -41,7 +41,11 @@ namespace Server.Migrations
 
                     b.Property<string>("LastName");
 
+                    b.Property<DateTime>("ModifiedDate");
+
                     b.Property<string>("PhoneNumber");
+
+                    b.Property<int>("YearOfJoining");
 
                     b.HasKey("Id");
 

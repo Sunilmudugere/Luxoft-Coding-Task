@@ -42,5 +42,10 @@ namespace Server.Controllers
             return Ok(await _empService.DeleteEmployee(emp));
         }
 
+        [HttpGet("EmployeeStatistics")]
+        public async Task<IActionResult> EmployeeStatistics(){
+            return Ok(await _empService.GetStatistics());
+        }
+
     }
 }

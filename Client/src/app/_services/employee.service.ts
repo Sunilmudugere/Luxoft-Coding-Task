@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmployeeViewModel } from '../_models/employeeViewModel';
 import { map } from 'rxjs/operators';
+import { EmployeeStatistics } from '../_models/employeeStatistics';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,6 @@ export class EmployeeService {
     return this.http.post(this.baseUrl + '/GetEmployees', model).pipe(
       map((response: any) => {
         if (response) {
-          console.log(response);
           return response;
         }
       })
@@ -30,7 +30,6 @@ export class EmployeeService {
     return this.http.post(this.baseUrl + '/SaveEmployees', model).pipe(
       map((response: any) => {
         if (response) {
-          console.log(response);
           return response;
         }
       })
@@ -38,14 +37,16 @@ export class EmployeeService {
   };
 
   deleteAllEmployees(model: any):Observable<EmployeeViewModel> {
-    console.log("Testing model: "+JSON.stringify(model));
     return this.http.post(this.baseUrl + '/DeleteEmployees', model).pipe(
       map((response: any) => {
         if (response) {
-          console.log(response);
           return response;
         }
       })
     )
+  };
+
+  getEmployeeStatisics():Observable<EmployeeStatistics> {
+    return this.http.get<EmployeeStatistics>(this.baseUrl + '/EmployeeStatistics');
   };
 }

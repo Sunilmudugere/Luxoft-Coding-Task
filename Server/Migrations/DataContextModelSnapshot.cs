@@ -27,7 +27,7 @@ namespace Server.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Email");
 
@@ -39,7 +39,11 @@ namespace Server.Migrations
 
                     b.Property<string>("LastName");
 
+                    b.Property<DateTime>("ModifiedDate");
+
                     b.Property<string>("PhoneNumber");
+
+                    b.Property<int>("YearOfJoining");
 
                     b.HasKey("Id");
 

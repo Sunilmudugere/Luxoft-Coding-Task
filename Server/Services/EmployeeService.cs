@@ -50,5 +50,25 @@ namespace Server.Services
             _empRepository.SaveAll();
             return Task.Run(() => GetEmployees(Emp));
         }
+
+        public Task<EmployeeStatistics> GetStatistics()
+        {
+            EmployeeStatistics stats = new EmployeeStatistics();
+            var employees = _empRepository.GetEmployeesForStats();
+            stats.CurrentEmployeeCount = employees.Where(x => x.IsDeleted != true).Count();
+            stats.DeletedEmployeeCount = employees.Where(x => x.IsDeleted == true).Count();
+            stats.ModifiedEmployeeCount = employees.Where(x => x.IsDeleted != true && x.ModifiedDate != null).Count();
+            stats.TotalEmployeeCount = employees.Count();
+            
+            var groupedResult = employees.GroupBy(x => x.YearOfJoining);
+            foreach (var group in groupedResult)
+            {
+                
+                stats.YearList.Add(group.Key);
+                stats.EmployeeAdded.Add(group.Count());
+                stats.EmployeeDeleted.Add(group.Where(x => x.IsDeleted == true && x.ModifiedDate.Year == group.Key).Count());
+            }
+            return Task.FromResult<EmployeeStatistics>(stats);
+        }
     }
 }

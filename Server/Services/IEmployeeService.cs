@@ -13,5 +13,6 @@ namespace Server.Services
         Task<EmployeeViewModel> GetEmployees(EmployeeDto emp);
         Task<EmployeeViewModel> SaveEmployee(EmployeeDto Emp);
         Task<EmployeeViewModel> DeleteEmployee(EmployeeDto Emp);
+        Task<EmployeeStatistics> GetStatistics();
     }
 }

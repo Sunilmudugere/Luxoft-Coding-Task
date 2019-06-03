@@ -33,6 +33,7 @@ import { OldComponent } from './old/old.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { EmployeeService } from './_services/employee.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 
 export function tokenGetter(){
     return localStorage.getItem('token');
@@ -64,6 +65,7 @@ export function tokenGetter(){
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
+      ChartsModule,
       NgbModule.forRoot(),
       JwtModule.forRoot({
         config:{
