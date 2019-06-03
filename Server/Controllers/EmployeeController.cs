@@ -25,7 +25,7 @@ namespace Server.Controllers
         }
         // GET api/Employee
         [HttpPost("GetEmployees")]
-        public async Task<IActionResult> GetEmployees(EmployeeDto emp)
+        public async Task<IActionResult> GetEmployees(Pagination emp)
         {
             return Ok(await _empService.GetEmployees(emp));
         }

@@ -31,6 +31,7 @@ namespace Server.Data
         public void DeleteEmployee(Employee Emp)
         {
             Emp.IsDeleted = true;
+            Emp.YearOfQuiting = DateTime.Now.Year;
             UpdateEmployee(Emp);
         }
 

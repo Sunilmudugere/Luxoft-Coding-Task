@@ -10,7 +10,7 @@ namespace Server.Services
 {
     public interface IEmployeeService
     {
-        Task<EmployeeViewModel> GetEmployees(EmployeeDto emp);
+        Task<EmployeeViewModel> GetEmployees(Pagination emp);
         Task<EmployeeViewModel> SaveEmployee(EmployeeDto Emp);
         Task<EmployeeViewModel> DeleteEmployee(EmployeeDto Emp);
         Task<EmployeeStatistics> GetStatistics();

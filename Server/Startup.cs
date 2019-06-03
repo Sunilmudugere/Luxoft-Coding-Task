@@ -48,7 +48,6 @@ namespace Server
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(opt =>
             opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
-            services.BuildServiceProvider().GetService<DataContext>().Database.EnsureCreated();
             services.AddCors();
             services.AddAutoMapper();
 

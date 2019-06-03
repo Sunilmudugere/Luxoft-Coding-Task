@@ -9,6 +9,7 @@ export class Employee {
   createdDate:Date;
   modifiedDate:Date;
   yearOfJoining:number;
+  yearOfQuiting:number;
   phoneNumber: string;
   email: string;
   city: string;
