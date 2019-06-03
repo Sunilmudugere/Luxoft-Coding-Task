@@ -3,7 +3,9 @@
 Dependencies :
 
 .Net Core 2.1.403 => https://dotnet.microsoft.com/download/dotnet-core/2.1#sdk-2.1.403
+
 Node.JS  =>  https://nodejs.org/en/download/
+
 Angular CLI 6.0.8 => npm install -g @angular/cli@6.0.8
 
 
