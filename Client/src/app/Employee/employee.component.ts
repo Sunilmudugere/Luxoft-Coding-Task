@@ -21,6 +21,7 @@ export class EmployeeComponent implements OnInit {
   model: EmployeeViewModel;
   gridOptions: GridOptions
   rowData: Employee[];
+  isDataUpdated:boolean = false;
   @ViewChild('addForm') addForm: NgForm;
   newEmployee: Employee = new Employee();
 
@@ -41,10 +42,6 @@ export class EmployeeComponent implements OnInit {
     this.rowSelection = "multiple";
   }
 
-  pageChanged(event: any): void {
-    this.model.pagination.currentPage = event.page;
-    this.loadGrid();
-  }
 
   loadGrid() {
     this.empService.getAllEmployees(this.model.pagination).subscribe(
@@ -69,7 +66,7 @@ export class EmployeeComponent implements OnInit {
     { headerName: 'Country', field: 'country', editable: true, width: 160, suppressSizeToFit: true, sortable: true },
   ];
 
-  onRemoveSelected() {
+    onRemoveSelected() {
     var selectedData = this.gridApi.getSelectedRows();
 
     if (selectedData.length < 1) {
@@ -99,15 +96,23 @@ export class EmployeeComponent implements OnInit {
     this.addForm.resetForm();
   }
 
+  pageChanged(event: any): void {
+    this.model.pagination.currentPage = event.page;
+    this.loadGrid();
+  }
+  cellDataChanged(event: any): void {
+    this.isDataUpdated = true;
+  }
   onUpdate() {
     this.model.employees = new Array<Employee>();
     this.model.employees = this.rowData;
     this.empService.saveAllEmployees(this.model).subscribe(
       res => {
       this.rowData = res.employees; this.model.pagination = res.pagination;
-        this.alertify.success("Employee Saved successfully")
+        this.alertify.success("Employee Saved successfully");
       },
       error => { this.alertify.error(error); },
+      ()=>{this.isDataUpdated = false;}
     );
   }
 }

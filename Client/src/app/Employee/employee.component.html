@@ -3,34 +3,34 @@
 </h3>
 <div class="container">
 
-    <div>
-      <form #addForm="ngForm" class="form-inline" (ngSubmit)="onAddRow()">
-        <input class="form-control" type="text" [(ngModel)]="newEmployee.firstName" name="firstName" required placeholder="First Name">
-        <input class="form-control" type="text" [(ngModel)]="newEmployee.lastName" name="lastName" required placeholder="Last Name">
-        <input class="form-control" type="text" [(ngModel)]="newEmployee.age" name="age" required placeholder="Age">
-        <input class="form-control" type="text" [(ngModel)]="newEmployee.gender" name="gender" required placeholder="Gender">
-        <input class="form-control broad" type="text" [(ngModel)]="newEmployee.email" name="email" required placeholder="Email Id">
-        <input class="form-control" type="text" [(ngModel)]="newEmployee.city" name="city" required placeholder="City">
-        <input class="form-control" type="text" [(ngModel)]="newEmployee.country" name="country" required placeholder="Country">
-        <button [disabled]="!addForm.valid" class="btn btn-success" type="submit">
-          <i class="fa fa-plus"></i> Add</button>
-        <button type="button" class="btn btn-info" (click)="onUpdate()">
-          <i class="fa fa-save"></i> Save
-        </button>
-        <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
-          <i class="fa fa-trash"></i> Delete
-        </button>
-      </form>
-    </div>
-    <div>
-      <ag-grid-angular class="ag-theme-balham" style="height: 257px;width:100%;margin: 5px" [rowData]="rowData" [columnDefs]="columnDefs"
-        [gridOptions]="gridOptions" [rowSelection]="rowSelection" (gridReady)="onGridReady($event)">
-      </ag-grid-angular>
-    </div>
-    <div class="d-flex justify-content-center space-top">
-      <pagination [boundaryLinks]="true" [totalItems]="model.pagination.totalItems" [itemsPerPage]="model.pagination.itemsPerPage"
-        [(ngModel)]="model.pagination.currentPage" (pageChanged)="pageChanged($event)" [maxSize]=5 previousText="Previous"
-        nextText="Next" firstText="First" lastText="Last">
-      </pagination>
-    </div>
+  <div>
+    <form #addForm="ngForm" class="form-inline" (ngSubmit)="onAddRow()">
+      <input class="form-control" type="text" [(ngModel)]="newEmployee.firstName" name="firstName" required placeholder="First Name">
+      <input class="form-control" type="text" [(ngModel)]="newEmployee.lastName" name="lastName" required placeholder="Last Name">
+      <input class="form-control" type="number" [(ngModel)]="newEmployee.age" name="age" required placeholder="Age">
+      <input class="form-control" type="text" [(ngModel)]="newEmployee.gender" name="gender" required placeholder="Gender">
+      <input class="form-control broad" type="email" [(ngModel)]="newEmployee.email" name="email" required placeholder="Email Id">
+      <input class="form-control" type="text" [(ngModel)]="newEmployee.city" name="city" required placeholder="City">
+      <input class="form-control" type="text" [(ngModel)]="newEmployee.country" name="country" required placeholder="Country">
+      <button [disabled]="!addForm.valid" class="btn btn-success" type="submit">
+        <i class="fa fa-plus"></i> Add</button>
+      <button type="button" [disabled]="!isDataUpdated" class="btn btn-info" (click)="onUpdate()">
+        <i class="fa fa-save"></i> Update
+      </button>
+      <button type="button" class="btn btn-danger" (click)="onRemoveSelected()">
+        <i class="fa fa-trash"></i> Delete
+      </button>
+    </form>
   </div>
+  <div>
+    <ag-grid-angular class="ag-theme-balham" style="height: 257px;width:100%;margin: 5px" [rowData]="rowData" [columnDefs]="columnDefs"
+      [gridOptions]="gridOptions" (cellValueChanged)="cellDataChanged($event)" [rowSelection]="rowSelection" (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+  </div>
+  <div class="d-flex justify-content-center space-top">
+    <pagination [boundaryLinks]="true" [totalItems]="model.pagination.totalItems" [itemsPerPage]="model.pagination.itemsPerPage"
+      [(ngModel)]="model.pagination.currentPage" (pageChanged)="pageChanged($event)" [maxSize]=5 previousText="Previous" nextText="Next"
+      firstText="First" lastText="Last">
+    </pagination>
+  </div>
+</div>
