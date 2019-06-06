@@ -49,8 +49,6 @@ namespace Server
             opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             services.AddCors();
-            services.AddAutoMapper();
-
 
             services.AddSwaggerGen(c =>
             {
@@ -86,8 +84,6 @@ namespace Server
             });
             Seeder.SeedUsers();
             app.UseCors(y => y.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseAuthentication();
-            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseMvc();

@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Server.Data;
-using Server.DTO;
 using Server.Services;
 using Server.Helpers;
 using Server.ViewModels;
@@ -31,13 +29,13 @@ namespace Server.Controllers
         }
 
         [HttpPost("SaveEmployees")]
-        public async Task<IActionResult> SaveEmployees(EmployeeDto emp)
+        public async Task<IActionResult> SaveEmployees(EmployeeViewModel emp)
         {
             return Ok(await _empService.SaveEmployee(emp));
         }
 
         [HttpPost("DeleteEmployees")]
-        public async Task<IActionResult> DeleteEmployees(EmployeeDto emp)
+        public async Task<IActionResult> DeleteEmployees(EmployeeViewModel emp)
         {
             return Ok(await _empService.DeleteEmployee(emp));
         }

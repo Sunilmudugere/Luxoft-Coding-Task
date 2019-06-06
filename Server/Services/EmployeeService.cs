@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Server.Data;
-using Server.DTO;
 using Server.Helpers;
 using Server.Models;
 using Server.ViewModels;
@@ -23,7 +22,7 @@ namespace Server.Services
             var empModel = new EmployeeViewModel(employeeInfo.dataList, employeeInfo.CurrentPage, employeeInfo.PageSize, employeeInfo.TotalCount, employeeInfo.TotalPages);
             return Task.FromResult<EmployeeViewModel>(empModel);
         }
-        public Task<EmployeeViewModel> SaveEmployee(EmployeeDto Emp)
+        public Task<bool> SaveEmployee(EmployeeViewModel Emp)
         {
             foreach (var employee in Emp.Employees)
             {
@@ -36,19 +35,17 @@ namespace Server.Services
                     _empRepository.UpdateEmployee(employee);
                 }
             }
-            _empRepository.SaveAll();
+          return  _empRepository.SaveAll();
 
-            return Task.Run(() => GetEmployees(Emp.Pagination));
         }
 
-        public Task<EmployeeViewModel> DeleteEmployee(EmployeeDto Emp)
+        public Task<bool> DeleteEmployee(EmployeeViewModel Emp)
         {
             foreach (var employee in Emp.Employees.Where(x => x.Id != 0))
             {
                 _empRepository.DeleteEmployee(employee);
             }
-            _empRepository.SaveAll();
-            return Task.Run(() => GetEmployees(Emp.Pagination));
+          return  _empRepository.SaveAll();
         }
 
         public Task<EmployeeStatistics> GetStatistics()

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Server.DTO;
 using Server.Models;
 
 namespace Server.ViewModels

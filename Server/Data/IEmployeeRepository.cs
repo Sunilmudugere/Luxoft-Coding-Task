@@ -9,9 +9,9 @@ namespace Server.Data
     public interface IEmployeeRepository
     {
         Task<PagedList<Employee>> GetEmployees(int recordsPerPage, int pageNumber);
-        void AddEmployee(Employee Emp);
-        void UpdateEmployee(Employee Emp);
-        void DeleteEmployee(Employee Emp);
+        Task AddEmployee(Employee Emp);
+        Task UpdateEmployee(Employee Emp);
+        Task DeleteEmployee(Employee Emp);
 
         IQueryable<Employee> GetEmployeesForStats();
         Task<bool> SaveAll();

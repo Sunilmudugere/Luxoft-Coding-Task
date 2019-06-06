@@ -21,24 +21,27 @@ namespace Server.Data
             var employees = _context.Employees.Where(x => !x.IsDeleted);
             return await PagedList<Employee>.CreateAsync(employees,pageNumber,recordsPerPage);
         }
-        public void AddEmployee(Employee Emp)
+        public Task AddEmployee(Employee Emp)
         {
             Emp.YearOfJoining = DateTime.Now.Year;
             Emp.CreatedDate = DateTime.Now;
             _context.Add(Emp);
+            return Task.CompletedTask;
         }
 
-        public void DeleteEmployee(Employee Emp)
+        public Task DeleteEmployee(Employee Emp)
         {
             Emp.IsDeleted = true;
             Emp.YearOfQuiting = DateTime.Now.Year;
             UpdateEmployee(Emp);
+            return Task.CompletedTask;
         }
 
-        public void UpdateEmployee(Employee Emp)
+        public Task UpdateEmployee(Employee Emp)
         {
             Emp.ModifiedDate = DateTime.Now;
             _context.Update(Emp);
+            return Task.CompletedTask;
         }
 
         public async Task<bool> SaveAll()
