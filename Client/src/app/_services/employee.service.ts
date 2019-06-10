@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EmployeeViewModel } from '../_models/employeeViewModel';
+import { EmployeeViewModel, Pagination } from '../_models/employeeViewModel';
 import { map } from 'rxjs/operators';
 import { EmployeeStatistics } from '../_models/employeeStatistics';
 
@@ -16,7 +16,7 @@ export class EmployeeService {
 
   baseUrl = environment.apiUrl + "Employee";
 
-  getAllEmployees(model: any):Observable<EmployeeViewModel> {
+  getAllEmployees(model: any):Observable<Pagination> {
     return this.http.post(this.baseUrl + '/GetEmployees', model).pipe(
       map((response: any) => {
         if (response) {
